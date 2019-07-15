@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!-- Fragment #1 : Header files contains css and js references -->
+<head>
+    <title>Paul's SpringBoot Security</title>
+    <meta charset="UTF-8"/>
+    <meta username="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{~/fontawesome/css/all.css}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, Spring Boot Security!</h1>
+            <p class="lead">This is Paul's home page. Anyone can access it, even if they have not signed in.</p>
+            <hr class="my-4">
+            <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
+            <p style="display: inline">
+                <a class="btn btn-danger btn-lg" th:href="@{/logout(logout)}" role="button">Sign Out</a>
+            </p> &nbsp;
+            <p style="display: inline" >
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-success btn-lg" th:href="@{/user}">New User</a>
+            </p>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">New User (Inactive)</button>
+        </div>
+        <div class="jumbotron">
+            <p>I am a footer</p>
+            <p sec:authenticated="${name}"></p>
+        </div>
+
+        <div th:if="${newUser}" >
+            <h3 class="alert alert-success text-center">User Created Successfully
+                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+            </h3>
+        </div>
+    </div>
+
+    <!--New Staff Form-->
+    <div class="container">
+        <form th:action="@{/create-user}" method="post">
+            <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="exampleModalLabel">Add New Staff</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="role">User Type</label>
+                                <select class="form-control" name="userType" id="role" required>
+                                    <option value="Receptionist" class="form-control" selected>Receptionist</option>
+                                    <option value="Administrator" class="form-control">Administrator</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Name</label>
+                                <input type="email" class="form-control" name="username" id="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password</label>
+                                <input type="password" class="form-control" name="password" id="pwd" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Create User</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <form th:action="@{/create-room}" method="post">
+            <div class="modal fade" id="roomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" >
+                            <h2 class="modal-title" id="exampleModalLabel1">Add New Room</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="rDesc">Room Description</label>
+                                <textarea class="form-control" name="roomDescription" id="rDesc" required autofocus></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="rType">Room Type</label>
+                                <select class="form-control" name="userType" id="rType" required>
+                                    <option value="Single Room" class="form-control">Single Room</option>
+                                    <option value="Family Room" class="form-control">Family Room</option>
+                                    <option value="Elite Room" class="form-control">Elite Room</option>
+                                    <option value="Executive Room" class="form-control">Executive Room</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="rPrice">Room Price</label>
+                                <input type="number" class="form-control" name="roomPrice" id="rPrice" required >
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Paul's SpringBoot Security</title>
+    <meta charset="UTF-8"/>
+    <meta username="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{~/fontawesome/css/all.css}" rel="stylesheet">
+</head>
+<body>
+    <!--<div class="container" style="margin: auto auto">-->
+        <!--<div class="jumbotron">-->
+            <!--<h1 class="display-4">Hello, Spring Boot Security!</h1>-->
+            <!--<p class="lead" th:if="${user0}">Sign In Successful. You Have Reached Paul's Admin Page</p>-->
+            <!--<p class="lead" th:if="${user1}">Sign In Successful. You Have Reached Paul's User Page</p>-->
+            <!--<p class="lead" th:if="${nonUser}">Sign In Unsuccessful. You Are Not A User In This Company! Who Are You?</p>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div th:if="${user1}">-->
+        <!--<button data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-plus">New User</span></button>-->
+    <!--</div>-->
+
+    <div th:if="${param.newUser}" >
+        <h3 class="alert alert-success text-center">User Created Successfully
+            <span class="glyphicon glyphicon-ok" style="color:green"></span>
+        </h3>
+    </div>
+
+    <!--New Staff Form-->
+    <div class="container-fluid">
+        <form th:action="@{/create-user}" th:object="${user}" method="post">
+            <div>
+                <h2>Add New Staff</h2>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="role">User Type</label>
+                    <select class="form-control" name="userType" id="role" required>
+                        <option value="Receptionist" class="form-control" selected>Receptionist</option>
+                        <option value="Administrator" class="form-control">Administrator</option>
+                    </select>
+                    <span th:if="${param.unknown}" class="text-danger">*Unknown User Type Selected</span>
+                </div>
+                <div class="form-group" th:class="${#fields.hasErrors('username')} ? 'form-group has-error' : 'form-group'">
+                    <label for="username">Name</label>
+                    <input type="text" class="form-control" th:field="*{username}" th:errorclass="has-error" id="username" />
+                    <span th:if="${#fields.hasErrors('username')}"  class="text-danger">
+                        <span th:each="err : ${#fields.errors('username')}" th:text="'*'+${err}"></span>
+                    </span>
+                </div>
+                <div class="form-group" th:class="${#fields.hasErrors('password')}  ? 'form-group has-error' : 'form-group'">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" th:field="*{password}" th:errorclass="has-error" id="pwd" />
+                    <span th:if="${#fields.hasErrors('password')}" class="text-danger">
+                        <span th:each="err: ${#fields.errors('password')}" th:text="'*'+${err}"></span>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Create User</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

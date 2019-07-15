@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Paul's SpringBoot Security</title>
+    <meta username="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{~/fontawesome/css/all.css}" rel="stylesheet">
+    <link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css}">
+</head>
+<body style="background: url('/img/error-img1.jpg'); background-size: cover;">
+    <div class="container jumbotron" style="font-family: 'Bodoni MT Condensed'">
+        <p style=" font-size: 56px; margin-top: unset" th:text="${errorCode}">error-code</p>
+        <h4>You've reached desert! You must have missed your way!<span class="glyphicon glyphicon-cloud"></span></h4>
+        <!--<img src="/img/western.png" alt="no rain">-->
+        <!--<img src="/img/no-rain.png" alt="no rain">-->
+        <!--<p>No water here</p>--><br>
+        <a href="/"><button class="btn btn-primary">Go back home</button></a>
+    </div>
+</body>
+</html>
