@@ -4,6 +4,7 @@ import com.isoft.security.config.UniqueColumn;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "user")
 public class User {
@@ -26,8 +27,16 @@ public class User {
 
     private Date dateCreated = new Date();
 
+//    @UniqueColumn() //Custom Unique Column Validator
+//    @NotBlank(message = "Username can not be blank")
+//    List<User> userList;
+
     public User() {
     }
+
+//    public User(List<User> userList) {
+//        this.userList = userList;
+//    }
 
     public User(String username, String password, String role, Date dateCreated) {
         this.password = password;
