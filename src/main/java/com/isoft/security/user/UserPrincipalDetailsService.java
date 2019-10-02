@@ -20,6 +20,6 @@ public class UserPrincipalDetailsService implements UserDetailsService {
         if(user==null)
             throw new UsernameNotFoundException("User 404");
 
-        return new UserPrincipal(user);
+        return new UserPrincipalDetails (user);
     }
 }

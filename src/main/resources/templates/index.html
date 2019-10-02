@@ -4,7 +4,7 @@
 
 <!-- Fragment #1 : Header files contains css and js references -->
 <head>
-    <title>Paul's SpringBoot Security</title>
+    <title>ISoft SpringBoot Security</title>
     <meta charset="UTF-8"/>
     <meta username="viewport" content="width=device-width, initial-scale=1">
     <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
@@ -15,13 +15,13 @@
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4">Hello, Spring Boot Security!</h1>
-            <p class="lead">This is Paul's home page. Anyone can access it, even if they have not signed in.</p>
+            <p class="lead">This is ISoft home page. Anyone can access it, even if they have not signed in.</p>
             <hr class="my-4">
             <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
             <p style="display: inline">
                 <a class="btn btn-danger btn-lg" th:href="@{/logout(logout)}" role="button">Sign Out</a>
             </p> &nbsp;
-            <p style="display: inline" >
+            <p style="display: inline" sec:authorize="hasRole('ADMIN')">
                 <a class="btn btn-success btn-lg" th:href="@{/new-user}">New User</a>
             </p>
             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">New User (Inactive)</button>

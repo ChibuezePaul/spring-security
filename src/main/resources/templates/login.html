@@ -6,19 +6,20 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <title>Red Hotel Staff Login</title>
+        <title>ISoft Spring Login</title>
     </head>
     <body>
         <div class="container jumbotron" style="margin: 100px auto; padding: 25px 25px; width: 45%">
             <form class="form-group" th:action="@{/login}" method="post" style="margin: auto 60px">
                 <div>
                     <!--<p th:if="${login}" class="alert alert-danger">Login Successful</p>-->
-                    <p th:if="${param.logout}" class="alert alert-success">Logout Successful</p>
+                    <p th:if="${logout}" class="alert alert-success">Logout Successful</p>
+                    <!--<p th:if="${param.logout}" class="alert alert-success">Logout Successful</p>-->
                     <p th:if="${param.error}" class="alert alert-danger">Invalid User Credentials</p>
                 </div>
 
                 <div class="form-group" style="padding-bottom:20px">
-                    <p>Paul's Spring Security Login</p>
+                    <p>ISoft Spring Security Login</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

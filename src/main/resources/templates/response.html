@@ -41,21 +41,21 @@
                         <option value="Receptionist" class="form-control" selected>Receptionist</option>
                         <option value="Administrator" class="form-control">Administrator</option>
                     </select>
-                    <span th:if="${param.unknown}" class="text-danger">*Unknown User Type Selected</span>
+                    <li th:if="${unknown}">Unknown user type selected</li>
                 </div>
-                <div class="form-group" th:class="${#fields.hasErrors('username')} ? 'form-group has-error' : 'form-group'">
+                <div  th:class="${#fields.hasErrors('username')} ? 'form-group has-error' : 'form-group'">
                     <label for="username">Name</label>
                     <input type="text" class="form-control" th:field="*{username}" th:errorclass="has-error" id="username" />
-                    <span th:if="${#fields.hasErrors('username')}"  class="text-danger">
-                        <span th:each="err : ${#fields.errors('username')}" th:text="'*'+${err}"></span>
-                    </span>
+                    <p style="list-style:none" th:if="${#fields.hasErrors('username')}"  class="text-danger">
+                        <li th:each="err : ${#fields.errors('username')}" th:text="${err}"></li>
+                    </p>
                 </div>
-                <div class="form-group" th:class="${#fields.hasErrors('password')}  ? 'form-group has-error' : 'form-group'">
+                <div th:class="${#fields.hasErrors('password')}  ? 'form-group has-error' : 'form-group'">
                     <label for="pwd">Password</label>
                     <input type="password" class="form-control" th:field="*{password}" th:errorclass="has-error" id="pwd" />
-                    <span th:if="${#fields.hasErrors('password')}" class="text-danger">
-                        <span th:each="err: ${#fields.errors('password')}" th:text="'*'+${err}"></span>
-                    </span>
+                    <p style="list-style:none" th:if="${#fields.hasErrors('password')}" class="text-danger">
+                        <li th:each="err: ${#fields.errors('password')}" th:text="${err}"></li>
+                    </p>
                 </div>
             </div>
             <div>
